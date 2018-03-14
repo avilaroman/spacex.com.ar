@@ -55,7 +55,7 @@
             <img src="https://static.earn.com/img/icons/wordmark-square-gold.svg" alt="Obtener recompensas por campañas publicitarias" style="width:42px;height:42px;border:0;">
       </a>
     </p>
-  <button id="myBtn" onclick="myFunction()">Pausa</button>
+  <button id="myBtn" onclick="myFunction()">Reproducir Video</button>
 </div>
      <script>
 var video = document.getElementById("myVideo");
@@ -63,10 +63,10 @@ var btn = document.getElementById("myBtn");
 function myFunction() {
     if (video.paused) {
         video.play();
-        btn.innerHTML = "Pausa";
+        btn.innerHTML = "Reproducir Video";
     } else {
         video.pause();
-        btn.innerHTML = "Play";
+        btn.innerHTML = "Ver Video";
     }
 }
 </script>
