@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<!-- saved from url=(0048)https://www.inteligente.com.ar/api/documentacion -->
+<html lang="es"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <!-- Required page needs -->
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+
+    <!-- Basic page needs -->
+    <title>Inteligente</title>
+    <meta name="description" content="Informes comerciales de personas físicas y jurídicas para la República Argentina">
+    <meta name="keywords" content="información comercial, información crediticia, empresas, personas, scoring, riesgo, crediticio, comercio, exterior, marketing, noticias, cotizaciones">
+    <meta name="author" content="DSA S.A.">
+    <meta name="copyright" content="DSA S.A., Copyright (c) 2016">
+    <meta name="robots" content="index, follow">
+
+    <!-- Icons -->
+    <link href="https://www.inteligente.com.ar/apple-touch-icon.20180321.png" rel="apple-touch-icon">
+    <link href="https://www.inteligente.com.ar/favicon.20180321.ico" rel="icon">
+
+    <!-- Fonts -->
+    <link href="./uso del API de inteligente_files/css" rel="stylesheet" type="text/css">
+
+    <!-- Stylesheet -->
+    <link href="./uso del API de inteligente_files/bootstrap.min.20180321.css" rel="stylesheet">
+    <link href="./uso del API de inteligente_files/bootstrap-datepicker.min.20180321.css" rel="stylesheet">
+    <link href="./uso del API de inteligente_files/fontawesome.min.20180321.css" rel="stylesheet">
+    <link href="./uso del API de inteligente_files/application.min.20180321.css" rel="stylesheet">
+
+    <!-- Javascript for Internet Explorer -->
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.20180321.js"></script>
+      <script src="../js/respond.min.20180321.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="encabezado">
+      <div class="navbar navbar-fixed-top">
+        <div class="container">
+          <div class="navbar-header">
+            <a class="navbar-brand" href="https://www.inteligente.com.ar/api/documentacion#">
+              <img src="./uso del API de inteligente_files/logo.png" alt="Inteligente">
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="contenido">
+      <div class="container">
+        <br>
+        <h1>Obtener listado de personas</h1>
+        <h2>Obtiene un listado de personas, o una persona en particular, para luego procesar el informe correspondiente.</h2>
+        <p><strong>GET</strong> <a href="https://www.inteligente.com.ar/api/informes" target="_blank">https://www.inteligente.com.ar/api/informes</a></p>
+        <table class="table table-bordered table-condensed table-hover">
+          <caption>Parámetros</caption>
+          <tbody><tr>
+            <td style="width:180px">buscar</td>
+            <td style="width:100px">string</td>
+            <td>Este parámetro es requerido y define los criterios de búqueda y filtrado. <br> + Ejemplo: "<strong>{busqueda}</strong>".</td>
+          </tr>
+          <tr>
+            <td style="width:180px">buscar_tipo</td>
+            <td style="width:100px">string</td>
+            <td>Este parámetro es opcional y define el tipo a filtrar. <br> + Ejemplo: "<strong>F</strong>". <br> - Valores:  "<strong>F</strong>" para Física, "<strong>J</strong>" para Jurídica.</td>
+          </tr>
+          <tr>
+            <td style="width:180px">buscar_sexo</td>
+            <td style="width:100px">string</td>
+            <td>Este parámetro es opcional y define el sexo a filtrar. <br> + Ejemplo: "<strong>M</strong>". <br> - Valores:  "<strong>M</strong>" para Masculino, "<strong>F</strong>" para Femenino.</td>
+          </tr>
+          <tr>
+            <td style="width:180px">buscar_provincia</td>
+            <td style="width:100px">string</td>
+            <td>Este parámetro es opcional y define la provincia a filtrar. <br> + Ejemplo: "<strong>CORDOBA</strong>". <br> - Valores:  "<strong>CORDOBA</strong>" para Córdoba.</td>
+          </tr>
+          <tr>
+            <td style="width:180px">buscar_historico</td>
+            <td style="width:100px">string</td>
+            <td>Este parámetro es opcional y define si se deben buscar los registros de informes solicitados con anterioridad. <br> + Ejemplo: "<strong>I</strong>". <br> - Valores:  "<strong>I</strong>" para Informes, "<strong>C</strong>" para Cantidad.</td>
+          </tr>
+          <tr>
+            <td style="width:180px">pagina</td>
+            <td style="width:100px">int</td>
+            <td>Este parámetro es opcional y se utiliza para indicar el número de página a consultar. <br> + Ejemplo: "<strong>{busqueda_pagina}</strong>".</td>
+          </tr>
+        </tbody></table>
+        <strong>cURL</strong><pre>curl --user '{username}:{password}' -X 'GET' -H 'Content-Type: application/json' 'https://www.inteligente.com.ar/api/informes?buscar='</pre>
+        <strong>PHP</strong><pre>$informe = json_decode(file_get_contents('https://www.inteligente.com.ar/api/informes?username={username}&amp;password={password}&amp;buscar='));</pre>
+        <br>
+        <h1>Solicitar informe</h1>
+        <h2>Genera un nuevo informe para la persona seleccionada.</h2>
+        <p><strong>GET</strong> <a href="https://www.inteligente.com.ar/api/informes/solicitar/:cuit" target="_blank">https://www.inteligente.com.ar/api/informes/solicitar/:cuit</a></p>
+        <table class="table table-bordered table-condensed table-hover">
+          <caption>Parámetros por URL</caption>
+          <tbody><tr>
+            <td style="width:180px">cuit</td>
+            <td style="width:100px">int</td>
+            <td>Este parámetro es requerido y define el CUIT de la persona. <br> + Ejemplo: "<strong>{cuit}</strong>".</td>
+          </tr>
+        </tbody></table>
+        <table class="table table-bordered table-condensed table-hover">
+          <caption>Parámetros</caption>
+          <tbody><tr>
+            <td style="width:180px">procesar_forzado</td>
+            <td style="width:100px">string</td>
+            <td>Este parámetro es opcional y fuerza la generación de un informe que ya ha sido procesado previamente. <br> + Ejemplo: "<strong>1</strong>". <br> - Valores:  "<strong>0</strong>" para No, "<strong>1</strong>" para Si.</td>
+          </tr>
+          <tr>
+            <td style="width:180px">procesar_secciones</td>
+            <td style="width:100px">string</td>
+            <td>Este parámetro es opcional y define las secciones a procesar. <br> + Ejemplo: "<strong>CJ_IN</strong>". <br> + Ejemplo: "<strong>CJ_IN,IC_PA</strong>". <br> - Valores: <div style="font-size:10px;padding-left:15px;">. <strong style="font-family:monospace;">CJ_IN</strong>: Identidad (offline)</div><div style="font-size:10px;padding-left:15px;">. <strong style="font-family:monospace;">CJ_HO</strong>: Personas con nombres similares (offline)</div><div style="font-size:10px;padding-left:15px;">. <strong style="font-family:monospace;">SF_UI</strong>: BCRA - Deudores - Último período en CD (offline)</div><div style="font-size:10px;padding-left:15px;">. <strong style="font-family:monospace;">SF_DH</strong>: BCRA - Historial (offline)</div><div style="font-size:10px;padding-left:15px;">. <strong style="font-family:monospace;">SF_CD</strong>: BCRA - Cheques rechazados (offline)</div><div style="font-size:10px;padding-left:15px;">. <strong style="font-family:monospace;">SF_EE</strong>: BCRA - Deudores morosos de ex-entidades financieras (offline)</div><div style="font-size:10px;padding-left:15px;">. <strong style="font-family:monospace;">IA_IP</strong>: Consultas a sitios públicos - AFIP - Controles (online)</div><div style="font-size:10px;padding-left:15px;">. <strong style="font-family:monospace;">IA_AO</strong>: AFIP - Constancia de inscripción (offline)</div><div style="font-size:10px;padding-left:15px;">. <strong style="font-family:monospace;">IA_PB</strong>: PAMI - Beneficios (online)</div><div style="font-size:10px;padding-left:15px;">. <strong style="font-family:monospace;">OI_SC</strong>: Dirección de aduanas (offline)</div><div style="font-size:10px;padding-left:15px;">. <strong style="font-family:monospace;">OI_PE</strong>: Proveedores del Estado (offline)</div><div style="font-size:10px;padding-left:15px;">. <strong style="font-family:monospace;">VL_HL</strong>: Historia laboral (offline)</div><div style="font-size:10px;padding-left:15px;">. <strong style="font-family:monospace;">VL_AC</strong>: ANSES - Obras sociales (offline)</div><div style="font-size:10px;padding-left:15px;">. <strong style="font-family:monospace;">JU_CB</strong>: Boletines oficiales y mesas de entrada (offline)</div><div style="font-size:10px;padding-left:15px;">. <strong style="font-family:monospace;">JU_QU</strong>: Concursos y quiebras (offline)</div><div style="font-size:10px;padding-left:15px;">. <strong style="font-family:monospace;">JU_AA</strong>: Facturas apócrifas en tiempo real (online)</div><div style="font-size:10px;padding-left:15px;">. <strong style="font-family:monospace;">JU_FA</strong>: Facturas apócrifas (offline)</div><div style="font-size:10px;padding-left:15px;">. <strong style="font-family:monospace;">JU_SO</strong>: Oficios AFIP y SOJ (offline)</div><div style="font-size:10px;padding-left:15px;">. <strong style="font-family:monospace;">JU_SD</strong>: Posibles juicios y edictos por documento (offline)</div><div style="font-size:10px;padding-left:15px;">. <strong style="font-family:monospace;">JU_SN</strong>: Posibles juicios y edictos por nombre (offline)</div><div style="font-size:10px;padding-left:15px;">. <strong style="font-family:monospace;">IC_DF</strong>: Domicilio fiscal en tiempo real (online)</div><div style="font-size:10px;padding-left:15px;">. <strong style="font-family:monospace;">IC_OD</strong>: Domicilios alternativos (offline)</div><div style="font-size:10px;padding-left:15px;">. <strong style="font-family:monospace;">IC_PR</strong>: Relaciones personas (offline)</div><div style="font-size:10px;padding-left:15px;">. <strong style="font-family:monospace;">IC_PE</strong>: Relaciones comerciales (offline)</div><div style="font-size:10px;padding-left:15px;">. <strong style="font-family:monospace;">IC_DO</strong>: Teléfonos en tiempo real por el último domicilio (online)</div><div style="font-size:10px;padding-left:15px;">. <strong style="font-family:monospace;">IC_TC</strong>: Teléfonos por CUIT o CUIL (offline)</div><div style="font-size:10px;padding-left:15px;">. <strong style="font-family:monospace;">IC_TE</strong>: Teléfonos por domicilio (offline)</div><div style="font-size:10px;padding-left:15px;">. <strong style="font-family:monospace;">IC_PD</strong>: Personas con domicilios coincidentes (offline)</div><div style="font-size:10px;padding-left:15px;">. <strong style="font-family:monospace;">IC_TF</strong>: Teléfonos por domicilio fiscal (offline)</div><div style="font-size:10px;padding-left:15px;">. <strong style="font-family:monospace;">IC_PA</strong>: Teléfonos por nombre (offline)</div><div style="font-size:10px;padding-left:15px;">. <strong style="font-family:monospace;">RI_RC</strong>: Registro de consultas generadas por clientes (offline)</div>.</td>
+          </tr>
+          <tr>
+            <td style="width:180px">procesar_secciones_grupos</td>
+            <td style="width:100px">string</td>
+            <td>Este parámetro es opcional y define el grupo de secciones a procesar. <br> + Ejemplo: "<strong>CJ</strong>". <br> + Ejemplo: "<strong>CJ,IC</strong>". <br> - Valores: <div style="font-size:10px;padding-left:15px;">. <strong style="font-family:monospace;">CJ</strong>: Información de identidad</div><div style="font-size:10px;padding-left:15px;">. <strong style="font-family:monospace;">IC</strong>: Información complementaria</div><div style="font-size:10px;padding-left:15px;">. <strong style="font-family:monospace;">IA</strong>: Información de actividad</div><div style="font-size:10px;padding-left:15px;">. <strong style="font-family:monospace;">VL</strong>: Información laboral</div><div style="font-size:10px;padding-left:15px;">. <strong style="font-family:monospace;">SF</strong>: Información financiera</div><div style="font-size:10px;padding-left:15px;">. <strong style="font-family:monospace;">JU</strong>: Información judicial</div><div style="font-size:10px;padding-left:15px;">. <strong style="font-family:monospace;">OI</strong>: Información aduanera</div><div style="font-size:10px;padding-left:15px;">. <strong style="font-family:monospace;">RI</strong>: Registros</div>.</td>
+          </tr>
+          <tr>
+            <td style="width:180px">formato</td>
+            <td style="width:100px">string</td>
+            <td>Este parámetro es opcional y define el tipo de formato. <br> + Ejemplo: "<strong>json</strong>". <br> - Valores:  "<strong>json</strong>",  "<strong>html</strong>",  "<strong>xml</strong>". </td>
+          </tr>
+        </tbody></table>
+        <strong>cURL</strong><pre>curl --user '{username}:{password}' -X 'GET' -H 'Content-Type: application/json' 'https://www.inteligente.com.ar/api/informes/solicitar/:cuit'</pre>
+        <strong>PHP</strong><pre>$informe = json_decode(file_get_contents('https://www.inteligente.com.ar/api/informes/solicitar/:cuit?username={username}&amp;password={password}'));</pre>
+        <br>
+        <h1>Consultar informe</h1>
+        <h2>Obtiene un informe desde el registro de informes.</h2>
+        <p><strong>GET</strong> <a href="https://www.inteligente.com.ar/api/informes/consultar/:cuit(/:informe)" target="_blank">https://www.inteligente.com.ar/api/informes/consultar/:cuit(/:informe)</a></p>
+        <table class="table table-bordered table-condensed table-hover">
+          <caption>Parámetros por URL</caption>
+          <tbody><tr>
+            <td style="width:180px">cuit</td>
+            <td style="width:100px">int</td>
+            <td>Este parámetro es requerido y define el CUIT de la persona. <br> + Ejemplo: "<strong>{cuit}</strong>".</td>
+          </tr>
+          <tr>
+            <td style="width:180px">informe</td>
+            <td style="width:100px">int</td>
+            <td>Este parámetro es opcional y define el código de informe. <br> + Ejemplo: "<strong>{informe}</strong>".</td>
+          </tr>
+        </tbody></table>
+        <table class="table table-bordered table-condensed table-hover">
+          <caption>Parámetros</caption>
+          <tbody><tr>
+            <td style="width:180px">formato</td>
+            <td style="width:100px">string</td>
+            <td>Este parámetro es opcional y define el formato. <br> + Ejemplo: "<strong>json</strong>". <br> - Valores:  "<strong>json</strong>",  "<strong>html</strong>",  "<strong>xml</strong>". </td>
+          </tr>
+        </tbody></table>
+        <strong>cURL</strong><pre>curl --user '{username}:{password}' -X 'GET' -H 'Content-Type: application/json' 'https://www.inteligente.com.ar/api/informes/consultar/:cuit(/:informe)'</pre>
+        <strong>PHP</strong><pre>$informe = json_decode(file_get_contents('https://www.inteligente.com.ar/api/informes/consultar/:cuit(/:informe)?username={username}&amp;password={password}'));</pre>
+        <br>
+        <h1>Descargar informe</h1>
+        <h2>Descarga un informe en formato PDF.</h2>
+        <p><strong>GET</strong> <a href="https://www.inteligente.com.ar/api/informes/descargar/:cuit(/:informe)" target="_blank">https://www.inteligente.com.ar/api/informes/descargar/:cuit(/:informe)</a></p>
+        <table class="table table-bordered table-condensed table-hover">
+          <caption>Parámetros por URL</caption>
+          <tbody><tr>
+            <td style="width:180px">cuit</td>
+            <td style="width:100px">int</td>
+            <td>Este parámetro es requerido y define el CUIT de la persona. <br> + Ejemplo: "<strong>{cuit}</strong>".</td>
+          </tr>
+          <tr>
+            <td style="width:180px">informe</td>
+            <td style="width:100px">int</td>
+            <td>Este parámetro es opcional y define el código de informe. <br> + Ejemplo: "<strong>{informe}</strong>".</td>
+          </tr>
+        </tbody></table>
+        <table class="table table-bordered table-condensed table-hover">
+          <caption>Parámetros</caption>
+          <tbody><tr>
+            <td style="width:180px">opciones</td>
+            <td style="width:100px">string</td>
+            <td>Este parámetro es opcional y define las opciones generales utilizadas para la creación del informe.</td>
+          </tr>
+        </tbody></table>
+        <strong>cURL</strong><pre>curl --user '{username}:{password}' -X 'GET' -H 'Content-Type: application/json' 'https://www.inteligente.com.ar/api/informes/descargar/:cuit(/:informe)'</pre>
+        <strong>PHP</strong><pre>$informe = json_decode(file_get_contents('https://www.inteligente.com.ar/api/informes/descargar/:cuit(/:informe)?username={username}&amp;password={password}'));</pre>
+        <br>
+        <h1>Enviar informe por correo electrónico</h1>
+        <h2>Envía un correo electrónico con el informe solicitado. Puede enviar a mas de un destinatario si los mismos están separados por punto y coma.</h2>
+        <p><strong>GET</strong> <a href="https://www.inteligente.com.ar/api/informes/enviar/:cuit(/:informe)" target="_blank">https://www.inteligente.com.ar/api/informes/enviar/:cuit(/:informe)</a></p>
+        <table class="table table-bordered table-condensed table-hover">
+          <caption>Parámetros por URL</caption>
+          <tbody><tr>
+            <td style="width:180px">cuit</td>
+            <td style="width:100px">int</td>
+            <td>Este parámetro es requerido y define el CUIT de la persona. <br> + Ejemplo: "<strong>{cuit}</strong>".</td>
+          </tr>
+          <tr>
+            <td style="width:180px">informe</td>
+            <td style="width:100px">int</td>
+            <td>Este parámetro es opcional y define el código de informe. <br> + Ejemplo: "<strong>{informe}</strong>".</td>
+          </tr>
+        </tbody></table>
+        <table class="table table-bordered table-condensed table-hover">
+          <caption>Parámetros</caption>
+          <tbody><tr>
+            <td style="width:180px">opciones</td>
+            <td style="width:100px">string</td>
+            <td>Este parámetro es opcional y define las opciones generales utilizadas para la creación del informe.</td>
+          </tr>
+          <tr>
+            <td style="width:180px">destinatarios</td>
+            <td style="width:100px">string</td>
+            <td>Este parámetro es requerido y define los destinatarios del informe.</td>
+          </tr>
+        </tbody></table>
+        <strong>cURL</strong><pre>curl --user '{username}:{password}' -X 'GET' -H 'Content-Type: application/json' 'https://www.inteligente.com.ar/api/informes/enviar/:cuit(/:informe)?destinatarios='</pre>
+        <strong>PHP</strong><pre>$informe = json_decode(file_get_contents('https://www.inteligente.com.ar/api/informes/enviar/:cuit(/:informe)?username={username}&amp;password={password}&amp;destinatarios='));</pre>
+        <br>
+        <h1>Obtener captcha de una consulta en línea</h1>
+        <h2>Inicia la solicitud de una consulta en línea, dicha solicitud devuelve un captcha para ser utilizado en la confirmación de la misma.</h2>
+        <p><strong>GET</strong> <a href="https://www.inteligente.com.ar/api/informes/modulos/consultas/obtener/:cuit/:informe/:consulta" target="_blank">https://www.inteligente.com.ar/api/informes/modulos/consultas/obtener/:cuit/:informe/:consulta</a></p>
+        <table class="table table-bordered table-condensed table-hover">
+          <caption>Parámetros por URL</caption>
+          <tbody><tr>
+            <td style="width:180px">cuit</td>
+            <td style="width:100px">int</td>
+            <td>Este parámetro es requerido y define el CUIT de la persona. <br> + Ejemplo: "<strong>{cuit}</strong>".</td>
+          </tr>
+          <tr>
+            <td style="width:180px">informe</td>
+            <td style="width:100px">int</td>
+            <td>Este parámetro es requerido y define el código de informe. <br> + Ejemplo: "<strong>{informe}</strong>".</td>
+          </tr>
+          <tr>
+            <td style="width:180px">consulta</td>
+            <td style="width:100px">string</td>
+            <td>Este parámetro es requerido y define la configuración de las secciones a incluir en el informe. <br> + Ejemplo: "<strong>bcra</strong>". <br> - Valores: <div style="font-size:10px;padding-left:15px;">. <strong style="font-family:monospace;">bcra</strong>: BCRA deudores y cheques</div><div style="font-size:10px;padding-left:15px;">. <strong style="font-family:monospace;">afip_controles</strong>: AFIP controles</div><div style="font-size:10px;padding-left:15px;">. <strong style="font-family:monospace;">afip</strong>: AFIP constancia de inscripción</div><div style="font-size:10px;padding-left:15px;">. <strong style="font-family:monospace;">afip_misaportes</strong>: AFIP mis aportes</div><div style="font-size:10px;padding-left:15px;">. <strong style="font-family:monospace;">anses</strong>: ANSES aportes obras sociales</div><div style="font-size:10px;padding-left:15px;">. <strong style="font-family:monospace;">anses_certificacion</strong>: ANSES actividades</div><div style="font-size:10px;padding-left:15px;">. <strong style="font-family:monospace;">anses_cobro</strong>: ANSES lugar de cobro</div><div style="font-size:10px;padding-left:15px;">. <strong style="font-family:monospace;">sssalud_serviciodomestico</strong>: SSSALUD servicio doméstico</div>.</td>
+          </tr>
+        </tbody></table>
+        <strong>cURL</strong><pre>curl --user '{username}:{password}' -X 'GET' -H 'Content-Type: application/json' 'https://www.inteligente.com.ar/api/informes/modulos/consultas/obtener/:cuit/:informe/:consulta'</pre>
+        <strong>PHP</strong><pre>$informe = json_decode(file_get_contents('https://www.inteligente.com.ar/api/informes/modulos/consultas/obtener/:cuit/:informe/:consulta?username={username}&amp;password={password}'));</pre>
+        <br>
+        <h1>Procesar una consulta en línea</h1>
+        <h2>Finaliza la solicitud de una consulta en línea utilizando opcionalmente el captcha recibido en la solicitud previa.</h2>
+        <p><strong>GET, POST</strong> <a href="https://www.inteligente.com.ar/api/informes/modulos/consultas/procesar/:cuit/:informe/:consulta" target="_blank">https://www.inteligente.com.ar/api/informes/modulos/consultas/procesar/:cuit/:informe/:consulta</a></p>
+        <table class="table table-bordered table-condensed table-hover">
+          <caption>Parámetros por URL</caption>
+          <tbody><tr>
+            <td style="width:180px">cuit</td>
+            <td style="width:100px">int</td>
+            <td>Este parámetro es requerido y define el CUIT de la persona. <br> + Ejemplo: "<strong>{cuit}</strong>".</td>
+          </tr>
+          <tr>
+            <td style="width:180px">informe</td>
+            <td style="width:100px">int</td>
+            <td>Este parámetro es requerido y define el código de informe. <br> + Ejemplo: "<strong>{informe}</strong>".</td>
+          </tr>
+          <tr>
+            <td style="width:180px">consulta</td>
+            <td style="width:100px">string</td>
+            <td>Este parámetro es requerido y define la configuración de las secciones a incluir en el informe. <br> + Ejemplo: "<strong>bcra</strong>". <br> - Valores: <div style="font-size:10px;padding-left:15px;">. <strong style="font-family:monospace;">bcra</strong>: BCRA deudores y cheques</div><div style="font-size:10px;padding-left:15px;">. <strong style="font-family:monospace;">afip_controles</strong>: AFIP controles</div><div style="font-size:10px;padding-left:15px;">. <strong style="font-family:monospace;">afip</strong>: AFIP constancia de inscripción</div><div style="font-size:10px;padding-left:15px;">. <strong style="font-family:monospace;">afip_misaportes</strong>: AFIP mis aportes</div><div style="font-size:10px;padding-left:15px;">. <strong style="font-family:monospace;">anses</strong>: ANSES aportes obras sociales</div><div style="font-size:10px;padding-left:15px;">. <strong style="font-family:monospace;">anses_certificacion</strong>: ANSES actividades</div><div style="font-size:10px;padding-left:15px;">. <strong style="font-family:monospace;">anses_cobro</strong>: ANSES lugar de cobro</div><div style="font-size:10px;padding-left:15px;">. <strong style="font-family:monospace;">sssalud_serviciodomestico</strong>: SSSALUD servicio doméstico</div>.</td>
+          </tr>
+        </tbody></table>
+        <table class="table table-bordered table-condensed table-hover">
+          <caption>Parámetros</caption>
+          <tbody><tr>
+            <td style="width:180px">datos</td>
+            <td style="width:100px">string</td>
+            <td>Este parámetro es requerido y define el captcha obtenidos previamente.</td>
+          </tr>
+          <tr>
+            <td style="width:180px">valor</td>
+            <td style="width:100px">string</td>
+            <td>Este parámetro es requerido y define el código del captcha a validar.</td>
+          </tr>
+        </tbody></table>
+        <strong>cURL</strong><pre>curl --user '{username}:{password}' -X 'POST' -H 'Content-Type: application/json' 'https://www.inteligente.com.ar/api/informes/modulos/consultas/procesar/:cuit/:informe/:consulta' -d '{"datos":"","valor":""}'</pre>
+        <br>
+        <h1>Actualizar módulos del informe</h1>
+        <h2>Actualiza la sección de módulos del informe.</h2>
+        <p><strong>POST, PUT, GET</strong> <a href="https://www.inteligente.com.ar/api/informes/modulos/:cuit/:informe(/:accion)" target="_blank">https://www.inteligente.com.ar/api/informes/modulos/:cuit/:informe(/:accion)</a></p>
+        <table class="table table-bordered table-condensed table-hover">
+          <caption>Parámetros por URL</caption>
+          <tbody><tr>
+            <td style="width:180px">cuit</td>
+            <td style="width:100px">int</td>
+            <td>Este parámetro es requerido y define el CUIT de la persona. <br> + Ejemplo: "<strong>{cuit}</strong>".</td>
+          </tr>
+          <tr>
+            <td style="width:180px">informe</td>
+            <td style="width:100px">int</td>
+            <td>Este parámetro es requerido y define el código de informe. <br> + Ejemplo: "<strong>{informe}</strong>".</td>
+          </tr>
+        </tbody></table>
+        <strong>cURL</strong><pre>curl --user '{username}:{password}' -X 'POST' -H 'Content-Type: application/json' 'https://www.inteligente.com.ar/api/informes/modulos/:cuit/:informe(/:accion)' </pre>
+        <br>
+        <h1>Consultar sesión</h1>
+        <h2>Retorna las propiedades, permisos y atributos de la cuenta en uso.</h2>
+        <p><strong>POST, PUT, GET</strong> <a href="https://www.inteligente.com.ar/api/usuarios/sesion" target="_blank">https://www.inteligente.com.ar/api/usuarios/sesion</a></p>
+        <table class="table table-bordered table-condensed table-hover">
+          <caption>Parámetros</caption>
+          <tbody><tr>
+            <td style="width:180px">action</td>
+            <td style="width:100px">string</td>
+            <td>Este parámetro es requerido y define la acción a realizar. <br> + Ejemplo: "<strong>login</strong>". <br> - Valores:  "<strong>login</strong>",   "<strong>logout</strong>". </td>
+          </tr>
+          <tr>
+            <td style="width:180px">username</td>
+            <td style="width:100px">string</td>
+            <td>Este parámetro es opcional y define el código de usuario. Solo se utiliza en el inicio de sesión. <br> + Ejemplo: "<strong>{username}</strong>".</td>
+          </tr>
+          <tr>
+            <td style="width:180px">password</td>
+            <td style="width:100px">string</td>
+            <td>Este parámetro es opcional y define la contraseña del usuario. Solo se utiliza en el inicio de sesión. <br> + Ejemplo: "<strong>{password}</strong>".</td>
+          </tr>
+        </tbody></table>
+        <strong>cURL</strong><pre>curl --user '{username}:{password}' -X 'POST' -H 'Content-Type: application/json' 'https://www.inteligente.com.ar/api/usuarios/sesion' -d '{"action":""}'</pre>
+        <br>
+        <h1>Obtener listado de facturas</h1>
+        <h2>Obtener listado completo de facturas.</h2>
+        <p><strong>GET</strong> <a href="https://www.inteligente.com.ar/api/facturas" target="_blank">https://www.inteligente.com.ar/api/facturas</a></p>
+        <strong>cURL</strong><pre>curl --user '{username}:{password}' -X 'GET' -H 'Content-Type: application/json' 'https://www.inteligente.com.ar/api/facturas'</pre>
+        <strong>PHP</strong><pre>$informe = json_decode(file_get_contents('https://www.inteligente.com.ar/api/facturas?username={username}&amp;password={password}'));</pre>
+        <br>
+        <h1>Descargar factura</h1>
+        <h2>Descargar factura en formato PDF.</h2>
+        <p><strong>GET</strong> <a href="https://www.inteligente.com.ar/api/facturas/descargar/:codigo" target="_blank">https://www.inteligente.com.ar/api/facturas/descargar/:codigo</a></p>
+        <table class="table table-bordered table-condensed table-hover">
+          <caption>Parámetros por URL</caption>
+          <tbody><tr>
+            <td style="width:180px">codigo</td>
+            <td style="width:100px">string</td>
+            <td>Este parámetro es requerido y define el código de factura.</td>
+          </tr>
+        </tbody></table>
+        <strong>cURL</strong><pre>curl --user '{username}:{password}' -X 'GET' -H 'Content-Type: application/json' 'https://www.inteligente.com.ar/api/facturas/descargar/:codigo'</pre>
+        <strong>PHP</strong><pre>$informe = json_decode(file_get_contents('https://www.inteligente.com.ar/api/facturas/descargar/:codigo?username={username}&amp;password={password}'));</pre>
+        <br>
+        <h1>Pagar listado de facturas</h1>
+        <h2>Pagar listado completo de facturas.</h2>
+        <p><strong>POST</strong> <a href="https://www.inteligente.com.ar/api/facturas" target="_blank">https://www.inteligente.com.ar/api/facturas</a></p>
+        <table class="table table-bordered table-condensed table-hover">
+          <caption>Parámetros</caption>
+          <tbody><tr>
+            <td style="width:180px">codigos[]</td>
+            <td style="width:100px">array</td>
+            <td>Este parámetro es requerido y define los códigos de facturas a pagar.</td>
+          </tr>
+        </tbody></table>
+        <strong>cURL</strong><pre>curl --user '{username}:{password}' -X 'POST' -H 'Content-Type: application/json' 'https://www.inteligente.com.ar/api/facturas' -d '{"codigos[]":""}'</pre>
+      </div>
+    </div>
+  
+</body></html>
